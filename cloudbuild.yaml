@@ -17,11 +17,8 @@ steps:
   # creating container 
   - name: 'gcr.io/cloud-builders/docker'
     args: ['run', '-idt', '--name', 'ashuc11',
-     '-p' ,'1234:80' ,'ashuwebapp:v1']
-  # step 5  app running status 
-  - name: 'google/cloud-sdk'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        curl http://localhost:1234/health.html
+     '-p' ,'1234:80', '--rm','ashuwebapp:v1']
+
+  # step 5  app running status by loging into same container and doing curl 
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['exec','ashuc11','curl','-f','http://localhost/health.html']
