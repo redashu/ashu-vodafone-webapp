@@ -8,7 +8,7 @@ steps:
   # Step 2 
   # do SAST in build container image with trivy
   - name: 'aquasec/trivy:latest'
-    args: ['image' ,'--severity' ,'HIGH,CRITICAL' ,'--format', 'json',  '--output' , '/tmp/ashu_imagescan.json', 'ashuwebapp:v1'] 
+    args: ['image' ,'--severity' ,'HIGH,CRITICAL' ,'--format', 'json',  '--output' , '/tmp/ashu_imagescan.json','--exit-code','1' ,'ashuwebapp:v1'] 
     
   # STEP 3 creating containers 
   # creating container 
