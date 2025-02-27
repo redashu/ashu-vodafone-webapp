@@ -8,11 +8,11 @@ steps:
   # Step 2 
   # do SAST in build container image with trivy
   - name: 'aquasec/trivy:latest'
-    args: ['image' ,'--severity' ,'HIGH,CRITICAL' ,'--format', 'json',  '--output' , '/tmp/ashu_imagescan.json','--exit-code','0' ,'ashuwebapp:v1'] 
+    args: ['image' ,'--severity' ,'HIGH,CRITICAL' ,'--format', 'json',  '--output' , '/workspace/ashu_imagescan.json','--exit-code','0' ,'ashuwebapp:v1'] 
     
   # STEP 3 upload trivy result to GSC 
   - name:  'google/cloud-sdk'
-    args: ['gsutil', 'cp','/tmp/ashu_imagescan.json','gs://vodafone-trivy-scan-results/containers/']
+    args: ['gsutil', 'cp','/workspace/ashu_imagescan.json','gs://vodafone-trivy-scan-results/containers/']
   # Step 4 
   # creating container 
   - name: 'gcr.io/cloud-builders/docker'
