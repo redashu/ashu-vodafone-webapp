@@ -1,0 +1,11 @@
+services:
+  ashu-python-app:
+  # image we want to build 
+    image: ashu-pyapp:samplev1
+    # location and name of Dockerfile  
+    build:
+      context: ./pyapp
+      dockerfile: Dockerfile  
+  ashu-web-app:
+    image: ashu-webapp:samplev1 
+    build: . 
